@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ishan Mishra — Systems / Backend Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --paper: #fafaf7;
+    --ink: #15181a;
+    --muted: #7d8286;
+    --accent: #2c5f6f;
+    --line: #e3e1db;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+  }
+
+  /* ---------- Masthead ---------- */
+  header.masthead {
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .masthead h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 5.5vw, 2.9rem);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  .masthead .role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-top: 0.6rem;
+    letter-spacing: 0.01em;
+  }
+
+  .masthead .role::before {
+    content: "// ";
+    color: var(--muted);
+  }
+
+  .masthead p.summary {
+    margin-top: 1.5rem;
+    max-width: 56ch;
+    color: #34383a;
+    font-size: 0.98rem;
+  }
+
+  .masthead .meta {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .masthead .meta a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .masthead .meta a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ---------- Section labels ---------- */
+  section { padding: 3.25rem 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.6rem;
+  }
+  .section-label::before { content: "§ "; color: var(--accent); }
+
+  /* ---------- Projects: schematic rows ---------- */
+  .project {
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .project:first-of-type { border-top: none; padding-top: 0; }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .project-name {
+    font-family: 'Newsreader', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .connector {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    position: relative;
+    top: -0.35rem;
+    overflow: hidden;
+  }
+  .connector .draw {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: draw-line 1.1s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes draw-line {
+    to { transform: scaleX(1); }
+  }
+
+  .metric {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .project-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .project-desc {
+    margin-top: 0.7rem;
+    font-size: 0.94rem;
+    color: #34383a;
+    max-width: 60ch;
+  }
+
+  .project-stack {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .project-stack span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 0.15rem 0.5rem;
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+
+  /* ---------- Experience ---------- */
+  .job { padding: 1.1rem 0; border-top: 1px solid var(--line); }
+  .job:first-of-type { border-top: none; padding-top: 0; }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+  }
+
+  .job-title {
+    font-family: 'Newsreader', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+  .job-org { color: var(--muted); font-size: 0.9rem; }
+  .job-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .job-desc {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    color: #34383a;
+    max-width: 60ch;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+  @media (max-width: 560px) { .skills-grid { grid-template-columns: 1fr; } }
+
+  .skill-cat h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .skill-cat p {
+    font-size: 0.9rem;
+    color: #34383a;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 3rem 0 5rem;
+  }
+  footer .contact-line {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    max-width: 30ch;
+  }
+  footer .links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+  }
+  footer .links a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  footer .links a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>Ishan Mishra</h1>
+    <div class="role">Systems / Backend Engineering</div>
+    <p class="summary">
+      I build systems-level software and backend infrastructure — from a
+      Redis-compatible data store with a custom epoll event loop, to ESP32
+      firmware and real-time ML inference. Comfortable working across the
+      software–hardware boundary. Currently looking for a Software/Systems
+      Engineering internship.
+    </p>
+    <div class="meta">
+      <span>San Francisco Bay Area</span>
+      <a href="mailto:ishan.mishra@sjsu.edu">ishan.mishra@sjsu.edu</a>
+      <a href="https://github.com/Ishan819" target="_blank">github.com/Ishan819</a>
+      <a href="#" target="_blank">linkedin</a>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="section-label">selected work</div>
+
+    <div class="project">
+      <div class="project-head">
+        <span class="project-name">redis-clone</span>
+        <span class="connector"><span class="draw" style="--delay:0.1s"></span></span>
+        <span class="metric">120K ops/sec</span>
+      </div>
+      <div class="project-period">Jan 2026 – Mar 2026</div>
+      <p class="project-desc">
+        A Redis-compatible in-memory data store built from scratch in Go —
+        RESP wire protocol, so it works with the real redis-cli and standard
+        drivers. Single-threaded epoll event loop handles 500+ concurrent
+        connections without a thread-per-connection model. Custom skip-list
+        for sorted sets, RDB-style snapshotting, TTL expiry, sub-millisecond
+        p99 latency under 50 concurrent clients.
+      </p>
+      <div class="project-stack">
+        <span>Go</span><span>epoll</span><span>RESP</span><span>Docker</span><span>GitHub Actions</span>
+      </div>
+      <a class="project-link" href="https://github.com/Ishan819" target="_blank">view source →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <span class="project-name">induction-fw</span>
+        <span class="connector"><span class="draw" style="--delay:0.25s"></span></span>
+        <span class="metric">ESP32 · BLE</span>
+      </div>
+      <div class="project-period">May 2026 – Aug 2026</div>
+      <p class="project-desc">
+        Modular ESP32 firmware for a smart induction cooktop controller —
+        state-machine architecture and a hardware abstraction layer for
+        peripheral init and sensor/display communication. Interrupt-driven
+        routines across GPIO, UART, SPI, I2C, PWM, and ADC, with BLE
+        connectivity and full hardware bring-up and validation.
+      </p>
+      <div class="project-stack">
+        <span>C++</span><span>PlatformIO</span><span>BLE</span><span>State machines</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <span class="project-name">vision-pulse</span>
+        <span class="connector"><span class="draw" style="--delay:0.4s"></span></span>
+        <span class="metric">92% accuracy</span>
+      </div>
+      <div class="project-period">Sep 2025 – Nov 2025</div>
+      <p class="project-desc">
+        A real-time ASL interpreter processing live webcam video through
+        MediaPipe hand-landmark detection — 24 signs classified at 30 FPS,
+        entirely client-side. Temporal smoothing across frames eliminates
+        false positives from hand jitter; a sentence-building state machine
+        segments continuous signing into words, spoken aloud via the Web
+        Speech API.
+      </p>
+      <div class="project-stack">
+        <span>React</span><span>TensorFlow.js</span><span>MediaPipe</span><span>Web Speech API</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">experience</div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="job-title">Teaching Assistant — CS &amp; Mathematics</div>
+          <div class="job-org">De Anza College, Cupertino, CA</div>
+        </div>
+        <div class="job-period">Mar 2025 – Jun 2026</div>
+      </div>
+      <p class="job-desc">
+        Facilitated intro/intermediate CS and core math tracks — OOP,
+        algorithm design, discrete structures, linear algebra. Analyzed
+        student performance to identify conceptual bottlenecks; ran code
+        walk-throughs and mentored peers on Git and foundational engineering
+        practice.
+      </p>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="job-title">Research Intern — Community College Research Program</div>
+          <div class="job-org">Stanford University, Stanford, CA</div>
+        </div>
+        <div class="job-period">Jan 2025 – Jun 2025</div>
+      </div>
+      <p class="job-desc">
+        Competitive research residency exploring emerging CS and data
+        analysis topics. Partnered with faculty mentors on literature
+        reviews, synthesizing technical material into structured research
+        foundations.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">stack</div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3>Languages &amp; Data</h3>
+        <p>Go, C++, C, Python, JavaScript, Java, SQL (Postgres, MySQL), Redis, MongoDB</p>
+      </div>
+      <div class="skill-cat">
+        <h3>Systems</h3>
+        <p>Memory management, concurrency, non-blocking I/O (epoll), skip lists, hash maps, benchmarking</p>
+      </div>
+      <div class="skill-cat">
+        <h3>Embedded</h3>
+        <p>ESP32, PlatformIO, GPIO/UART/SPI/I2C/PWM/ADC, interrupt-driven design, BLE</p>
+      </div>
+      <div class="skill-cat">
+        <h3>Cloud &amp; Tools</h3>
+        <p>Docker, GCP, AWS, GitHub Actions, gRPC, Protocol Buffers, Linux</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p class="contact-line">Building something in backend or systems? Let's talk.</p>
+    <div class="links">
+      <a href="mailto:ishan.mishra@sjsu.edu">Email</a>
+      <a href="https://github.com/Ishan819" target="_blank">GitHub</a>
+      <a href="#" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
