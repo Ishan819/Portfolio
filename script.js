@@ -29,7 +29,7 @@
     my = e.clientY - r.top;
   }, { passive: true });
 
-  const R = 160; 
+  const R = 160; // radius of influence around the cursor, in px
 
   function tick() {
     requestAnimationFrame(tick);
@@ -48,6 +48,7 @@
   new ResizeObserver(() => layout()).observe(host);
 })();
 
+// ---- Stage 3: interactive 3D keycap board ----
 (function buildBoard() {
   const capgrid = document.getElementById('capgrid');
   const scene = document.getElementById('scene');
@@ -168,4 +169,44 @@
 
   new ResizeObserver(() => { fit(); if (!scattered) { scattered = true; scatter(); } }).observe(scene);
   window.addEventListener('load', () => { fit(); if (!scattered) { scattered = true; scatter(); } });
+})();
+
+// ---- Stage 4: Work section content ----
+(function buildWork() {
+  const projList = document.getElementById('projects-list');
+  if (!projList) return;
+
+  const PROJECTS = [
+    { num: '01', title: 'Redis clone — in-memory data store',
+      blurb: 'A Redis-compatible server written from scratch in Go. It speaks the RESP wire protocol, so redis-cli and real Redis drivers connect without knowing the difference.',
+      points: ['Single-threaded epoll event loop holding 500+ concurrent clients — no thread per connection.', '120K+ ops/sec on GET/SET with sub-millisecond p99; RDB-style snapshots and TTL expiry.'],
+      stack: ['GO', 'EPOLL', 'RESP', 'DOCKER', 'CI/CD'], shot: 'BENCHMARK CAPTURE' },
+    { num: '02', title: 'Smart induction cooktop controller',
+      blurb: 'Modular ESP32 firmware for a connected cooktop — a state-machine core over a hardware abstraction layer, so every peripheral is a swappable module instead of a tangle of pin writes.',
+      points: ['Interrupt-driven routines across GPIO, PWM, ADC, I2C, SPI, UART and timers.', 'Hardware bring-up and validation with serial tooling and datasheets in hand; BLE control.'],
+      stack: ['C++', 'PLATFORMIO', 'BLE', 'I2C / SPI / UART'], shot: 'BOARD PHOTO' },
+    { num: '03', title: 'Vision Pulse — real-time ASL interpreter',
+      blurb: 'Webcam in, spoken sentences out — entirely in the browser at 30 FPS, with no frame ever leaving the machine.',
+      points: ['24 signs at 92% accuracy from MediaPipe hand landmarks.', 'Temporal smoothing demands sustained confidence across frames, killing jitter false-positives.'],
+      stack: ['REACT', 'TENSORFLOW.JS', 'MEDIAPIPE', 'WEB SPEECH API'], shot: 'APP SCREENSHOT' },
+  ];
+
+  PROJECTS.forEach(p => {
+    const art = document.createElement('article');
+    art.className = 'project-row';
+    art.innerHTML = `
+      <div class="project-num">${p.num}</div>
+      <div style="min-width:0">
+        <h3 class="project-title">${p.title}</h3>
+        <p class="project-blurb">${p.blurb}</p>
+        <div class="project-points">
+          ${p.points.map(pt => `<div class="project-point"><span>—</span><span>${pt}</span></div>`).join('')}
+        </div>
+        <div class="project-stack">
+          ${p.stack.map(t => `<span class="project-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="project-shot"><span>${p.shot}</span></div>`;
+    projList.appendChild(art);
+  });
 })();
