@@ -28,18 +28,41 @@
   </header>
 
   <main class="hero">
-    <div class="hero-content">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        OPEN TO SUMMER 2027 INTERNSHIPS
+    <div id="field" class="field"></div>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          OPEN TO SUMMER 2027 INTERNSHIPS
+        </div>
+        <h1 class="headline">Hi, I'm<br />Ishan Mishra<span class="accent-dot">.</span></h1>
+        <p class="hero-desc">
+          Third-year computer science student at San José State. I like building things end to end — taking something apart to see how it works, then making it work better. The details live in the projects and experience.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">View work →</a>
+          <a href="mailto:ishan.mishra@sjsu.edu" class="btn btn-secondary">Get in touch</a>
+        </div>
       </div>
-      <h1 class="headline">Hi, I'm<br />Ishan Mishra<span class="accent-dot">.</span></h1>
-      <p class="hero-desc">
-        Third-year computer science student at San José State. I like building things end to end — taking something apart to see how it works, then making it work better. The details live in the projects and experience.
-      </p>
-      <div class="hero-actions">
-        <a href="#" class="btn btn-primary">View work →</a>
-        <a href="mailto:ishan.mishra@sjsu.edu" class="btn btn-secondary">Get in touch</a>
+
+      <div class="board-wrap">
+        <div id="scene" class="scene">
+          <div id="board" class="board">
+            <div class="board-layer" style="transform: translateZ(-2px); background: linear-gradient(158deg, oklch(0.3 0.006 260), oklch(0.215 0.006 260)); box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.1)"></div>
+            <div class="board-layer" style="transform: translateZ(-8px); background: oklch(0.2 0.006 260)"></div>
+            <div class="board-layer" style="transform: translateZ(-14px); background: oklch(0.17 0.006 260)"></div>
+            <div class="board-layer" style="transform: translateZ(-20px); background: oklch(0.14 0.006 260)"></div>
+            <div class="board-layer" style="transform: translateZ(-26px); background: oklch(0.115 0.006 260); box-shadow: 0 40px 80px oklch(0.08 0 0 / 0.7)"></div>
+            <div id="capgrid" class="capgrid"></div>
+          </div>
+        </div>
+        <div class="board-controls">
+          <a href="#" id="toggle-assemble" class="pill pill-accent">
+            <span class="badge-dot"></span><span id="assemble-label">Assemble</span>
+          </a>
+          <a href="#" id="reset-view" class="pill pill-plain">Reset view</a>
+        </div>
+        <div id="board-hint" class="board-hint">twenty things I work with — press assemble</div>
       </div>
     </div>
   </main>
