@@ -67,13 +67,37 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Hero ---------- */
 .hero {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
   padding: clamp(20px, 3vh, 44px) clamp(20px, 4vw, 56px) 88px;
+  overflow: hidden;
+}
+
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 40px;
+  align-items: center;
 }
 
 .hero-content { max-width: 700px; }
+
+@media (max-width: 820px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
 
 .badge {
   display: inline-flex;
@@ -169,3 +193,135 @@ a { color: inherit; text-decoration: none; }
 }
 
 .statusbar-right { color: oklch(0.68 0.11 75); }
+
+/* ---------- Keycap board ---------- */
+.board-wrap {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 1 / 0.76;
+  perspective: 1300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.board {
+  position: relative;
+  width: 320px;
+  height: 254px;
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-32deg);
+  will-change: transform;
+}
+
+.board-layer {
+  position: absolute;
+  inset: -26px;
+  border-radius: 24px;
+}
+
+.capgrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 56px);
+  grid-auto-rows: 56px;
+  gap: 10px;
+  transform-style: preserve-3d;
+}
+
+.cap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform .9s cubic-bezier(.22,.9,.25,1);
+}
+
+.cap-box {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .18s ease;
+}
+.cap:hover .cap-box { transform: translateZ(-7px); }
+
+.capgrid.floating .cap-box { animation: bob 4.8s ease-in-out infinite; }
+@keyframes bob {
+  0%, 100% { transform: translateZ(0); }
+  50% { transform: translateZ(15px); }
+}
+
+.cap-face {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(26px);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 2px 0 oklch(1 0 0 / 0.2), inset 0 -4px 8px oklch(0 0 0 / 0.28);
+  user-select: none;
+}
+.cap-face.large { font-size: 19px; letter-spacing: 0.01em; }
+
+.board-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pill-accent {
+  border: 1px solid oklch(0.42 0.1 75);
+  color: oklch(0.86 0.14 75);
+}
+.pill-accent:hover {
+  background: oklch(0.8 0.15 75 / 0.12);
+  color: oklch(0.9 0.14 75);
+}
+
+.pill-plain {
+  border: 1px solid oklch(0.32 0.006 260);
+  color: oklch(0.72 0.006 260);
+  padding: 10px 18px;
+}
+.pill-plain:hover {
+  border-color: oklch(0.6 0.006 260);
+  color: oklch(0.92 0.004 260);
+}
+
+.board-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: oklch(0.5 0.006 260);
+  text-align: center;
+}
